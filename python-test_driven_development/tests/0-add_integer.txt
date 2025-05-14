@@ -1,29 +1,51 @@
 # Test pour la fonction add_integer
 >>> add_integer = __import__('0-add_integer').add_integer
 
+# Tests de base
 >>> add_integer(1, 2)
 3
-
 >>> add_integer(100, -2)
 98
-
 >>> add_integer(2)
 100
-
 >>> add_integer(100.3, -2)
 98
 
->>> add_integer(4, School)
+# Tests avec différents types d'erreurs
+>>> add_integer(4, "School")
 Traceback (most recent call last):
 ...
 TypeError: b must be an integer
 
->>> add_integer (None)
+>>> add_integer("School", 4)
 Traceback (most recent call last):
 ...
 TypeError: a must be an integer
 
+>>> add_integer(None)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
 
+# Tests supplémentaires pour une meilleure couverture
+>>> add_integer(float('inf'))
+Traceback (most recent call last):
+...
+OverflowError: cannot convert float infinity to integer
 
+>>> add_integer(float('nan'))
+Traceback (most recent call last):
+...
+ValueError: cannot convert float NaN to integer
 
+# Test avec deux flottants
+>>> add_integer(2.5, 3.7)
+5
 
+# Test avec de très grands nombres
+>>> add_integer(999999999, 1)
+1000000000
+
+# Test avec zéro
+>>> add_integer(0, 0)
+0
