@@ -89,3 +89,73 @@ Hello world
 :
 
 ?
+
+# Test avec des espaces uniquement
+>>> text_indentation("   ")
+   
+
+# Test avec une longue chaîne sans caractères spéciaux
+>>> text_indentation("abcdefghijklmnopqrstuvwxyz")
+abcdefghijklmnopqrstuvwxyz
+
+# Test avec des caractères spéciaux et des retours à la ligne
+>>> text_indentation("Line1.\nLine2?\nLine3:")
+Line1.
+
+Line2?
+
+Line3:
+
+# Test avec des tabulations
+>>> text_indentation("Hello\tworld.")
+Hello	world.
+
+# Test avec des caractères non ASCII
+>>> text_indentation("Bonjour. Ça va? Très bien: merci!")
+Bonjour.
+
+Ça va?
+
+Très bien:
+
+merci!
+
+# Test avec des alternances rapides de caractères spéciaux et de texte
+>>> text_indentation("a.b?c:d.e?f:")
+a.
+
+b?
+
+c:
+
+d.
+
+e?
+
+f:
+
+# Test avec du texte entre guillemets
+>>> text_indentation('Il a dit: "Bonjour."')
+Il a dit:
+
+"Bonjour."
+
+# Test avec un paragraphe entier
+>>> text_indentation("Premier paragraphe. Deuxième phrase? Troisième phrase: la suite. Fin.")
+Premier paragraphe.
+
+Deuxième phrase?
+
+Troisième phrase:
+
+la suite.
+
+Fin.
+
+# Test avec des nombres dans le texte
+>>> text_indentation("Version 1.0: mise à jour? Oui.")
+Version 1.0:
+
+mise à jour?
+
+Oui.
