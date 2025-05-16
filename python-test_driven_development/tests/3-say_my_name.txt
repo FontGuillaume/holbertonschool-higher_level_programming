@@ -1,0 +1,64 @@
+# Tests pour la fonction say_my_name
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+# Test avec prénom et nom normaux
+>>> say_my_name("John", "Smith")
+My name is John Smith
+
+# Test avec prénom uniquement (nom par défaut)
+>>> say_my_name("Bob")
+My name is Bob 
+
+# Test avec des espaces en début et fin
+>>> say_my_name("  Jean  ", "  Dupont  ")
+My name is   Jean     Dupont  
+
+# Test avec des caractères spéciaux
+>>> say_my_name("John-Paul", "O'Connor")
+My name is John-Paul O'Connor
+
+# Test avec une chaîne vide pour le nom
+>>> say_my_name("John", "")
+My name is John 
+
+# Test avec une chaîne vide pour le prénom
+>>> say_my_name("", "Smith")
+My name is  Smith
+
+# Test d'erreur : prénom non chaîne de caractères
+>>> say_my_name(12, "Smith")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+# Test d'erreur : nom non chaîne de caractères
+>>> say_my_name("John", 12)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+# Test d'erreur : prénom None
+>>> say_my_name(None, "Smith")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+# Test d'erreur : nom None
+>>> say_my_name("John", None)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+# Test d'erreur : aucun argument
+>>> say_my_name()
+Traceback (most recent call last):
+...
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+# Test avec un nom très long
+>>> say_my_name("John", "Smith" * 10)
+My name is John SmithSmithSmithSmithSmithSmithSmithSmithSmithSmith
+
+# Test avec des nombres sous forme de chaînes
+>>> say_my_name("123", "456")
+My name is 123 456
