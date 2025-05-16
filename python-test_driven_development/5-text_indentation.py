@@ -21,15 +21,22 @@ def text_indentation(text):
     special_chars = ['.', '?', ':']
 
     i = 0
+    skip_space = False  # Pour savoir si on doit ignorer les espaces
+
     while i < len(text):
+        # Ignorer les espaces après les caractères spéciaux
+        if skip_space and text[i] == ' ':
+            i += 1
+            continue
+
+        skip_space = False
+
         # Imprimer le caractère courant
         print(text[i], end="")
 
         # Si c'est un caractère spécial, ajouter 2 nouvelles lignes
         if text[i] in special_chars:
             print("\n\n", end="")
+            skip_space = True  # Commencer à ignorer les espaces
 
-            # Ignorer les espaces après le caractère spécial
-            while i + 1 < len(text) and text[i + 1] == ' ':
-                i += 1
         i += 1
