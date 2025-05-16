@@ -17,26 +17,16 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    # Caractères spéciaux après lesquels il faut ajouter 2 nouvelles lignes
-    special_chars = ['.', '?', ':']
+    # Remplacer les caractères spéciaux par le caractère suivi de 2 nouvelles
+    # lignes
+    result = text
+    for char in ['.', '?', ':']:
+        result = result.replace(char, char + "\n\n")
 
-    i = 0
-    skip_space = False  # Pour savoir si on doit ignorer les espaces
-
-    while i < len(text):
-        # Ignorer les espaces après les caractères spéciaux
-        if skip_space and text[i] == ' ':
-            i += 1
-            continue
-
-        skip_space = False
-
-        # Imprimer le caractère courant
-        print(text[i], end="")
-
-        # Si c'est un caractère spécial, ajouter 2 nouvelles lignes
-        if text[i] in special_chars:
-            print("\n\n", end="")
-            skip_space = True  # Commencer à ignorer les espaces
-
-        i += 1
+    # Traiter chaque ligne pour supprimer les espaces en début et fin
+    lines = result.split("\n")
+    for i, line in enumerate(lines):
+        print(line.strip() if i < len(lines) -
+              1 or line.strip() else "", end="")
+        if i < len(lines) - 1:
+            print()
