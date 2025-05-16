@@ -15,37 +15,6 @@
 # Test avec une taille de 0
 >>> print_square(0)
 
-
-# Test avec une taille négative
->>> print_square(-1)
-Traceback (most recent call last):
-...
-ValueError: size must be >= 0
-
-# Test avec un float
->>> print_square(5.5)
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
-
-# Test avec un float négatif
->>> print_square(-2.5)
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
-
-# Test avec un type non numérique
->>> print_square("4")
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
-
-# Test avec None
->>> print_square(None)
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
-
 # Test avec une grande taille
 >>> print_square(10)
 ##########
@@ -58,3 +27,78 @@ TypeError: size must be an integer
 ##########
 ##########
 ##########
+
+# Test avec un très grand nombre
+>>> print_square(20)  # Affiche un carré de 20x20
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+
+# Test avec une taille négative
+>>> print_square(-1)
+Traceback (most recent call last):
+...
+ValueError: size must be >= 0
+
+# Test avec un float positif
+>>> print_square(4.5)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+# Test avec un float négatif
+>>> print_square(-4.5)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+# Test avec une chaîne
+>>> print_square("4")
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+# Test avec None
+>>> print_square(None)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+# Test avec une liste
+>>> print_square([4])
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+# Test avec un booléen
+>>> print_square(True)  # True est 1 en Python
+#
+
+# Test avec zéro comme float
+>>> print_square(0.0)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+# Test avec un objet non itérable
+>>> print_square(complex(1, 2))
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
