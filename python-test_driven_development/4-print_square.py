@@ -13,10 +13,19 @@ def print_square(size):
 
     Raises:
         TypeError: Si size n'est pas un entier
+        TypeError: Si size est un float négatif
         ValueError: Si size est inférieur à 0
     """
+    # Vérification pour les floats négatifs (condition spécifique selon
+    # l'énoncé)
+    if isinstance(size, float) and size < 0:
+        raise TypeError("size must be an integer")
+
+    # Vérification générale du type
     if not isinstance(size, int):
         raise TypeError("size must be an integer")
+
+    # Vérification pour les entiers négatifs
     if size < 0:
         raise ValueError("size must be >= 0")
 
