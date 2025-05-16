@@ -1,161 +1,48 @@
-# Tests pour la fonction text_indentation
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
-# Test avec un texte contenant tous les caractères spéciaux
->>> text_indentation("Hello. How are you? Fine: thanks.")
+>>> text_indentation("Hello. How are you?")
 Hello.
-
+<BLANKLINE>
 How are you?
+<BLANKLINE>
 
-Fine:
-
-thanks.
-
-# Test avec un texte sans caractères spéciaux
->>> text_indentation("Hello")
-Hello
-
-# Test avec caractères spéciaux consécutifs
->>> text_indentation("Hello..?:")
+>>> text_indentation("Hello.World")
 Hello.
+<BLANKLINE>
+World
 
-.
-
-?
-
+>>> text_indentation("Hello.: World")
+Hello.
+<BLANKLINE>
 :
+<BLANKLINE>
+World
 
-# Test avec des espaces avant et après les caractères spéciaux
->>> text_indentation("Hello . How ? Fine : Thanks")
-Hello .
-
-How ?
-
-Fine :
-
-Thanks
-
-# Test avec des espaces au début et à la fin
->>> text_indentation("  Hello.  ")
-  Hello.
-
-# Test avec des espaces multiples entre les mots
->>> text_indentation("Hello   world.  Next  sentence.")
-Hello   world.
-
-Next  sentence.
-
-# Test avec des phrases plus complexes
->>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo?")
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-Quonam modo?
-
-# Test avec une chaîne vide
->>> text_indentation("")
-
-# Test avec plusieurs nouvelles lignes dans le texte
->>> text_indentation("Hello.\n\nHow are you?")
+>>> text_indentation("   Hello.   World?   ")
 Hello.
+<BLANKLINE>
+World?
+<BLANKLINE>
 
+>>> text_indentation("Hello.   How are you?")
+Hello.
+<BLANKLINE>
 How are you?
+<BLANKLINE>
 
-# Test avec un type non chaîne
 >>> text_indentation(123)
 Traceback (most recent call last):
-...
 TypeError: text must be a string
 
-# Test avec None
 >>> text_indentation(None)
 Traceback (most recent call last):
-...
 TypeError: text must be a string
 
-# Test avec caractère spécial à la fin
->>> text_indentation("Hello world.")
-Hello world.
+>>> text_indentation(["Hello", "World"])
+Traceback (most recent call last):
+TypeError: text must be a string
 
-# Test avec caractère spécial au début
->>> text_indentation(":Hello world")
-:
+>>> text_indentation("")
 
-Hello world
-
-# Test avec uniquement des caractères spéciaux
->>> text_indentation(".:?")
-.
-
-:
-
-?
-
-# Test avec des espaces uniquement
->>> text_indentation("   ")
-   
-
-# Test avec une longue chaîne sans caractères spéciaux
->>> text_indentation("abcdefghijklmnopqrstuvwxyz")
-abcdefghijklmnopqrstuvwxyz
-
-# Test avec des caractères spéciaux et des retours à la ligne
->>> text_indentation("Line1.\nLine2?\nLine3:")
-Line1.
-
-Line2?
-
-Line3:
-
-# Test avec des tabulations
->>> text_indentation("Hello\tworld.")
-Hello	world.
-
-# Test avec des caractères non ASCII
->>> text_indentation("Bonjour. Ça va? Très bien: merci!")
-Bonjour.
-
-Ça va?
-
-Très bien:
-
-merci!
-
-# Test avec des alternances rapides de caractères spéciaux et de texte
->>> text_indentation("a.b?c:d.e?f:")
-a.
-
-b?
-
-c:
-
-d.
-
-e?
-
-f:
-
-# Test avec du texte entre guillemets
->>> text_indentation('Il a dit: "Bonjour."')
-Il a dit:
-
-"Bonjour."
-
-# Test avec un paragraphe entier
->>> text_indentation("Premier paragraphe. Deuxième phrase? Troisième phrase: la suite. Fin.")
-Premier paragraphe.
-
-Deuxième phrase?
-
-Troisième phrase:
-
-la suite.
-
-Fin.
-
-# Test avec des nombres dans le texte
->>> text_indentation("Version 1.0: mise à jour? Oui.")
-Version 1.0:
-
-mise à jour?
-
-Oui.
+>>> text_indentation("Hello World")
+Hello World

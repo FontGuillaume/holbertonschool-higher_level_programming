@@ -1,32 +1,37 @@
 #!/usr/bin/python3
 """
-Module contenant la fonction text_indentation pour formater du texte
+Module for text_indentation function
 """
 
 
 def text_indentation(text):
     """
-    Imprime un texte avec 2 nouvelles lignes après chaque '.', '?' et ':'.
+    Prints a text with 2 new lines after each of '.', '?', and ':' characters
 
     Args:
-        text (str): Le texte à formater et imprimer
+        text (str): The text to be indented
 
     Raises:
-        TypeError: Si text n'est pas une chaîne de caractères
+        TypeError: If text is not a string
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    # Remplacer les caractères spéciaux par le caractère suivi de 2 nouvelles
-    # lignes
-    result = text
-    for char in ['.', '?', ':']:
-        result = result.replace(char, char + "\n\n")
+    special_chars = [".", "?", ":"]
+    current_line = ""
 
-    # Traiter chaque ligne pour supprimer les espaces en début et fin
-    lines = result.split("\n")
-    for i, line in enumerate(lines):
-        print(line.strip() if i < len(lines) -
-              1 or line.strip() else "", end="")
-        if i < len(lines) - 1:
+    i = 0
+    while i < len(text):
+        current_line += text[i]
+
+        if text[i] in special_chars:
+            print(current_line.strip())
             print()
+            current_line = ""
+
+            while i + 1 < len(text) and text[i + 1] == " ":
+                i += 1
+        i += 1
+
+    if current_line.strip():
+        print(current_line.strip(), end="")
