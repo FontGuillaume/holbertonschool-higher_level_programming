@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Module définissant une classe Square avec taille, position et affichage.
+"""
+
+
 class Square:
     """
     Classe représentant un carré avec une taille et une position.
@@ -12,17 +17,10 @@ class Square:
         Args:
             size (int): Taille du côté du carré (par défaut 0)
             position (tuple): Position du carré (par défaut (0,0))
-
-        Note: La validation de position n'est pas effectuée ici,
-        ce qui est un problème
-        car on stocke position avant de vérifier sa validité dans le setter.
         """
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
-        if size < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = size  # Attribut privé pour la taille
-        self.__position = position  # Attribut privé pour la position
+        # Utilise les setters pour valider les données
+        self.size = size
+        self.position = position  # Appelle le setter qui valide
 
     def area(self):
         """
