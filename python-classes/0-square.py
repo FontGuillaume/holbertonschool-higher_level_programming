@@ -9,7 +9,8 @@ class Square:
     """
     Classe Square qui représente un carré.
 
-    Cette classe est une implémentation minimale (vide) sans attributs ni méthodes.
+    Cette classe est une implémentation minimale (vide)
+    sans attributs ni méthodes.
     Elle servira de base pour les implémentations futures qui ajouteront
     des fonctionnalités comme la taille, le calcul d'aire, etc.
     """
