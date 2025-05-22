@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
-Module qui définit une classe Rectangle avec attributs, méthodes et représentation en chaîne
+Module qui définit une classe Rectangle avec attributs, méthodes,
+représentations en chaîne, compteur d'instances, symbole configurable,
+méthode de comparaison de rectangles et factory method pour créer un carré
 """
 
 
@@ -11,7 +13,11 @@ class Rectangle:
     Attributes:
         width (int): La largeur du rectangle
         height (int): La hauteur du rectangle
+        number_of_instances (int): Compteur du nombre d'instances créées
+        print_symbol (any): Symbole utilisé pour la représentation en chaîne
     """
+    number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """
@@ -23,6 +29,7 @@ class Rectangle:
         """
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -103,12 +110,71 @@ class Rectangle:
 
     def __str__(self):
         """
-        Définit la représentation en chaîne de caractères du rectangle.
+        Définit la représentation en chaîne de caractères du rectangle
+        pour l'affichage, en utilisant le symbole défini dans print_symbol.
 
         Returns:
-            str: Une représentation du rectangle avec des caractères '#',
+            str: Une représentation du rectangle avec le symbole configuré,
             ou une chaîne vide si la largeur ou la hauteur est 0
         """
         if self.width == 0 or self.height == 0:
             return ""
-        return '\n'.join(["#" * self.width for i in range(self.height)])
+        return '\n'.join([str(self.print_symbol) *
+                          self.width for i in range(self.height)])
+
+    def __repr__(self):
+        """
+        Définit la représentation en chaîne de caractères du rectangle
+        qui peut être utilisée pour recréer une nouvelle instance.
+
+        Returns:
+            str: Une représentation de l'objet sous forme "Rectangle(width, height)"
+        """
+        return "Rectangle({}, {})".format(self.width, self.height)
+
+    def __del__(self):
+        """
+        Méthode appelée lors de la suppression de l'instance.
+
+        Décrémente le compteur d'instances et affiche un message d'adieu
+        lorsqu'une instance de Rectangle est supprimée.
+        """
+        Rectangle.number_of_instances -= 1
+        print("Bye rectangle...")
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """
+        Compare deux rectangles et retourne le plus grand en fonction de l'aire.
+
+        Args:
+            rect_1 (Rectangle): Premier rectangle à comparer
+            rect_2 (Rectangle): Second rectangle à comparer
+
+        Raises:
+            TypeError: Si rect_1 n'est pas une instance de Rectangle
+            TypeError: Si rect_2 n'est pas une instance de Rectangle
+
+        Returns:
+            Rectangle: Le rectangle avec la plus grande aire, ou rect_1 si égaux
+        """
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_1.area() >= rect_2.area():
+            return rect_1
+        return rect_2
+
+    @classmethod
+    def square(cls, size=0):
+        """
+        Crée un nouveau Rectangle avec largeur == hauteur == size.
+
+        Args:
+            size (int, optional): La taille du carré. Par défaut 0.
+
+        Returns:
+            Rectangle: Un nouveau Rectangle qui est un carré
+        """
+        return cls(size, size)
