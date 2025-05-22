@@ -128,7 +128,8 @@ class Rectangle:
         qui peut être utilisée pour recréer une nouvelle instance.
 
         Returns:
-            str: Une représentation de l'objet sous forme "Rectangle(width, height)"
+            str: Une représentation de l'objet
+            sous forme "Rectangle(width, height)"
         """
         return "Rectangle({}, {})".format(self.width, self.height)
 
@@ -145,7 +146,8 @@ class Rectangle:
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """
-        Compare deux rectangles et retourne le plus grand en fonction de l'aire.
+        Compare deux rectangles et retourne le
+        plus grand en fonction de l'aire.
 
         Args:
             rect_1 (Rectangle): Premier rectangle à comparer
@@ -156,7 +158,8 @@ class Rectangle:
             TypeError: Si rect_2 n'est pas une instance de Rectangle
 
         Returns:
-            Rectangle: Le rectangle avec la plus grande aire, ou rect_1 si égaux
+            Rectangle: Le rectangle avec la
+            plus grande aire, ou rect_1 si égaux
         """
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")

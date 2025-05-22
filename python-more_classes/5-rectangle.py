@@ -121,7 +121,8 @@ class Rectangle:
         qui peut être utilisée pour recréer une nouvelle instance.
 
         Returns:
-            str: Une représentation de l'objet sous forme "Rectangle(width, height)"
+            str: Une représentation de l'objet
+            sous forme "Rectangle(width, height)"
         """
         return "Rectangle({}, {})".format(self.width, self.height)
 

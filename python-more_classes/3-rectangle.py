@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Module qui définit une classe Rectangle avec attributs, méthodes et représentation en chaîne
+Module qui définit une classe Rectangle avec attributs,
+méthodes et représentation en chaîne
 """
 
 
