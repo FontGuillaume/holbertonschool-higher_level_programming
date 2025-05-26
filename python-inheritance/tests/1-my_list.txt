@@ -1,0 +1,88 @@
+==============================
+Test pour le module 1-my_list
+==============================
+
+Importation de la classe:
+-------------------------
+>>> MyList = __import__('1-my_list').MyList
+
+Tests de base:
+-------------
+>>> my_list = MyList()
+>>> type(my_list)
+<class '1-my_list.MyList'>
+
+>>> issubclass(MyList, list)
+True
+
+Liste vide:
+----------
+>>> my_list = MyList()
+>>> my_list.print_sorted()
+[]
+
+Ajout d'éléments à la liste:
+---------------------------
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(4)
+>>> my_list.append(2)
+>>> my_list.append(3)
+>>> my_list.append(5)
+>>> print(my_list)
+[1, 4, 2, 3, 5]
+
+>>> my_list.print_sorted()
+[1, 2, 3, 4, 5]
+
+>>> print(my_list)  # Vérifier que la liste originale n'est pas modifiée
+[1, 4, 2, 3, 5]
+
+Liste avec un seul élément:
+--------------------------
+>>> my_list = MyList()
+>>> my_list.append(42)
+>>> my_list.print_sorted()
+[42]
+
+Liste avec des nombres négatifs:
+------------------------------
+>>> my_list = MyList()
+>>> my_list.append(-1)
+>>> my_list.append(-4)
+>>> my_list.append(-2)
+>>> my_list.append(-3)
+>>> my_list.append(-5)
+>>> my_list.print_sorted()
+[-5, -4, -3, -2, -1]
+
+Liste avec nombres positifs et négatifs mélangés:
+----------------------------------------------
+>>> my_list = MyList()
+>>> my_list.append(-1)
+>>> my_list.append(4)
+>>> my_list.append(-2)
+>>> my_list.append(3)
+>>> my_list.append(0)
+>>> my_list.print_sorted()
+[-2, -1, 0, 3, 4]
+
+Liste déjà triée:
+---------------
+>>> my_list = MyList([1, 2, 3, 4, 5])
+>>> my_list.print_sorted()
+[1, 2, 3, 4, 5]
+
+Liste avec des doublons:
+---------------------
+>>> my_list = MyList([3, 1, 2, 3, 2, 1])
+>>> my_list.print_sorted()
+[1, 1, 2, 2, 3, 3]
+
+Passage d'une liste lors de l'initialisation:
+-------------------------------------------
+>>> my_list = MyList([5, 4, 3, 2, 1])
+>>> print(my_list)
+[5, 4, 3, 2, 1]
+>>> my_list.print_sorted()
+[1, 2, 3, 4, 5]
