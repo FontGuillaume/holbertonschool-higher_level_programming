@@ -1,0 +1,117 @@
+==============================
+Test pour le module 7-base_geometry
+==============================
+
+Importation de la classe:
+-------------------------
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Tests d'instanciation:
+--------------------
+>>> bg = BaseGeometry()
+>>> type(bg)
+<class '7-base_geometry.BaseGeometry'>
+
+Tests de la méthode area():
+------------------------
+>>> bg = BaseGeometry()
+>>> try:
+...     bg.area()
+... except Exception as e:
+...     print(e)
+area() is not implemented
+
+Tests de la méthode integer_validator():
+--------------------------------------
+
+# Test avec un entier valide
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", 12)
+
+# Test avec plusieurs entiers valides
+>>> bg.integer_validator("width", 89)
+>>> bg.integer_validator("height", 100)
+
+# Test avec une valeur de 0 (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("age", 0)
+... except Exception as e:
+...     print(e)
+age must be greater than 0
+
+# Test avec une valeur négative (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("distance", -4)
+... except Exception as e:
+...     print(e)
+distance must be greater than 0
+
+# Test avec une chaîne de caractères (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("name", "John")
+... except Exception as e:
+...     print(e)
+name must be an integer
+
+# Test avec None (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("value", None)
+... except Exception as e:
+...     print(e)
+value must be an integer
+
+# Test avec un booléen (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("valid", True)
+... except Exception as e:
+...     print(e)
+valid must be an integer
+
+# Test avec une liste (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("values", [1, 2, 3])
+... except Exception as e:
+...     print(e)
+values must be an integer
+
+# Test avec un tuple (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("position", (1, 2))
+... except Exception as e:
+...     print(e)
+position must be an integer
+
+# Test avec un dictionnaire (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("user", {"id": 1, "name": "John"})
+... except Exception as e:
+...     print(e)
+user must be an integer
+
+# Test avec un ensemble (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("numbers", {1, 2, 3})
+... except Exception as e:
+...     print(e)
+numbers must be an integer
+
+# Test avec un float (devrait lever une exception)
+>>> try:
+...     bg.integer_validator("average", 7.8)
+... except Exception as e:
+...     print(e)
+average must be an integer
+
+# Test avec deux arguments manquants
+>>> try:
+...     bg.integer_validator()
+... except Exception as e:
+...     print("Exception raised")
+Exception raised
+
+# Test avec un argument manquant
+>>> try:
+...     bg.integer_validator("age")
+... except Exception as e:
+...     print("Exception raised")
+Exception raised
