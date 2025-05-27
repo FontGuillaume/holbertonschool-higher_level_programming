@@ -108,7 +108,7 @@ class Rectangle(Shape):
         return 2 * (self.width + self.height)
 
 
-def shape_info(shape):
+def shape_info(shape: object) -> None:
     """
     Fonction qui affiche les informations d'une forme géométrique.
     Cette fonction utilise le duck typing, elle accepte tout objet ayant
