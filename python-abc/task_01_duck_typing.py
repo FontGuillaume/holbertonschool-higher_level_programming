@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 from abc import ABC, abstractmethod
 import math
 
@@ -58,7 +58,6 @@ class Circle(Shape):
         """
         return 2 * math.pi * self.radius
 
-
 class Rectangle(Shape):
     """
     Classe représentant un rectangle, qui
@@ -94,8 +93,7 @@ class Rectangle(Shape):
             float: Le périmètre du rectangle (2 * (largeur + hauteur))
         """
         return 2 * (self.width + self.height)
-
-
+    
 def shape_info(shape):
     """
     Fonction qui affiche les informations d'une forme géométrique.
