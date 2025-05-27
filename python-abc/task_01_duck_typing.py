@@ -15,6 +15,25 @@ import math
 from abc import ABC, abstractmethod
 
 
+def shape_info(shape):
+    """
+    Fonction qui affiche les informations d'une forme géométrique.
+
+    Cette fonction utilise le duck typing, elle accepte tout objet ayant
+    les méthodes area() et perimeter(), sans vérifier son type réel.
+
+    Peu importe si l'objet est une instance de
+    Shape ou non - si ça marche comme
+    une forme (a les méthodes requises), alors c'est
+    une forme pour cette fonction.
+
+    Args:
+        shape: Un objet qui implémente les méthodes area() et perimeter()
+    """
+    print("Area: {}".format(shape.area()))
+    print("Perimeter: {}".format(shape.perimeter()))
+
+
 class Shape(ABC):
     """
     Classe abstraite qui définit l'interface
@@ -125,12 +144,3 @@ def shape_info(shape):
     """
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))
-
-
-if __name__ == "__main__":
-    # Test des classes
-    circle = Circle(radius=5)
-    rectangle = Rectangle(width=4, height=7)
-
-    shape_info(circle)
-    shape_info(rectangle)
