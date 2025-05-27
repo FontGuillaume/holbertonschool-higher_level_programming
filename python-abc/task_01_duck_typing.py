@@ -1,4 +1,16 @@
 #!/usr/bin/env python3
+'''
+Ce module implémente un système de formes géométriques
+avec des classes abstraites.
+Il démontre le concept de "duck typing" en Python, où l'interface d'un objet
+est définie par son comportement plutôt que par son héritage.
+
+Le module contient:
+- Une classe abstraite Shape qui définit l'interface
+pour les formes géométriques
+- Deux classes concrètes: Circle et Rectangle qui héritent de Shape
+- Une fonction utilitaire shape_info qui utilise le duck typing
+'''
 from abc import ABC, abstractmethod
 import math
 
