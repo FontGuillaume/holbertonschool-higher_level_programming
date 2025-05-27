@@ -58,6 +58,7 @@ class Circle(Shape):
         """
         return 2 * math.pi * self.radius
 
+
 class Rectangle(Shape):
     """
     Classe représentant un rectangle, qui
@@ -93,7 +94,8 @@ class Rectangle(Shape):
             float: Le périmètre du rectangle (2 * (largeur + hauteur))
         """
         return 2 * (self.width + self.height)
-    
+
+
 def shape_info(shape):
     """
     Fonction qui affiche les informations d'une forme géométrique.
@@ -103,5 +105,5 @@ def shape_info(shape):
     Args:
         shape: Un objet qui implémente les méthodes area() et perimeter()
     """
-    print("Area: {}".format(shape.area()))
-    print("Perimeter: {}".format(shape.perimeter()))
+    print(f"Area: {shape.area()}")
+    print(f"Perimeter: {shape.perimeter()}")
