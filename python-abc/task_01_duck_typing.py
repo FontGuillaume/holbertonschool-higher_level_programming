@@ -45,7 +45,6 @@ class Shape(ABC):
         Méthode abstraite qui calcule l'aire de la forme.
         Doit être implémentée par toutes les sous-classes.
         """
-        
 
     @abstractmethod
     def perimeter(self):
@@ -53,7 +52,6 @@ class Shape(ABC):
         Méthode abstraite qui calcule le périmètre de la forme.
         Doit être implémentée par toutes les sous-classes.
         """
-        
 
 
 class Circle(Shape):
