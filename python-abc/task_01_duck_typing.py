@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 '''
 Ce module implémente un système de formes géométriques
 avec des classes abstraites.
@@ -109,13 +109,6 @@ class Rectangle(Shape):
 
 
 def shape_info(shape):
-    """
-    Fonction qui affiche les informations d'une forme géométrique.
-    Cette fonction utilise le duck typing, elle accepte tout objet ayant
-    les méthodes area() et perimeter(), sans vérifier son type réel.
-
-    Args:
-        shape: Un objet qui implémente les méthodes area() et perimeter()
-    """
+    """Affiche l'aire et le périmètre d'une forme."""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))
