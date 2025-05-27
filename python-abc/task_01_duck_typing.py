@@ -11,8 +11,8 @@ pour les formes géométriques
 - Deux classes concrètes: Circle et Rectangle qui héritent de Shape
 - Une fonction utilitaire shape_info qui utilise le duck typing
 '''
-from abc import ABC, abstractmethod
 import math
+from abc import ABC, abstractmethod
 
 
 class Shape(ABC):
