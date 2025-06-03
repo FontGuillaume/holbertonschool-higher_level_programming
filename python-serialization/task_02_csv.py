@@ -22,12 +22,16 @@ def convert_csv_to_json(csv_filename, json_filename=None):
         json_filename = csv_filename.split('.')[0] + '.json'
 
     try:
-        # Lecture du fichier CSV
+        """
+        Lecture du fichier CSV et conversion en liste de dictionnaires
+        """
         with open(csv_filename, "r", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             data = list(reader)
 
-        # Écriture des données au format JSON
+        """
+        Écriture des données au format JSON avec indentation pour lisibilité
+        """
         with open(json_filename, "w", encoding="utf-8") as jsonfile:
             json.dump(data, jsonfile, indent=4)
 
