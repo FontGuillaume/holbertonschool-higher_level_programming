@@ -46,10 +46,10 @@ class new_class(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            json_info = json.dumps({"version": "1.0", "description": "A "
-                                    "simple API built "
-                                    "with http.server"})
-            self.wfile.write(json_info.encode())
+            info = {
+                "version": "1.0",
+                "description": "A simple API built with http.server"}
+            self.wfile.write(json.dumps(info).encode())
 
         else:
             self.send_response(404)
