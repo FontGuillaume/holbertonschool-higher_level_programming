@@ -40,7 +40,7 @@ class new_class(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            self.wfile.write(b'{"status":"OK"}')
+            self.wfile.write(json.dumps({"status": "OK"}).encode())
 
         elif self.path == "/info":
             self.send_response(200)
@@ -53,7 +53,7 @@ class new_class(BaseHTTPRequestHandler):
 
         else:
             self.send_response(404)
-            self.send_header('Content-Type', 'application/json')
+            self.send_header("Content-Type", 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(
                 {"error": "Endpoint not found"}).encode())
