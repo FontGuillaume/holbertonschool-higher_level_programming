@@ -19,7 +19,7 @@ def fetch_and_print_posts():
     if r.status_code == 200:
         data = r.json()
         for post in data:
-            print(post['title'])
+            print("{}".format(post['title']))
 
 
 def fetch_and_save_posts():
