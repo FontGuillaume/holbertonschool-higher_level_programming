@@ -6,6 +6,7 @@ Permet de récupérer des posts et de les afficher ou les sauvegarder.
 import requests
 import csv
 
+
 def fetch_and_print_posts():
     '''
     Fonction qui récupère des posts depuis JSONPlaceholder et les affiche.
@@ -20,17 +21,21 @@ def fetch_and_print_posts():
         for post in data:
             print(post['title'])
 
+
 def fetch_and_save_posts():
     '''
-    Fonction qui récupère des posts depuis JSONPlaceholder et les sauvegarde dans un fichier CSV.
-    Extrait l'id, le titre et le corps de chaque post et les enregistre dans posts.csv.
+    Fonction qui récupère des posts depuis JSONPlaceholder
+    et les sauvegarde dans un fichier CSV.
+    Extrait l'id, le titre et le corps de chaque
+    post et les enregistre dans posts.csv.
     '''
     url = "https://jsonplaceholder.typicode.com/posts"
     r = requests.get(url)
 
     if r.status_code == 200:
         data = r.json()
-        posts = [{"id": post["id"], "title": post["title"], "body": post["body"]} for post in data]
+        posts = [{"id": post["id"], "title": post["title"], "body":
+                  post["body"]} for post in data]
 
         with open("posts.csv", "w", newline='', encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=["id", "title", "body"])

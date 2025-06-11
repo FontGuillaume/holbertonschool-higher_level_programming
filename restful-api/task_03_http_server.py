@@ -6,12 +6,13 @@ Fournit plusieurs endpoints pour démontrer les bases d'une API RESTful.
 import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
+
 class new_class(BaseHTTPRequestHandler):
     '''
     Classe de gestionnaire HTTP personnalisée qui étend BaseHTTPRequestHandler.
     Gère les requêtes GET pour différents endpoints de l'API.
     '''
-    
+
     def do_GET(self):
         '''
         Méthode qui traite toutes les requêtes GET reçues par le serveur.
@@ -19,7 +20,7 @@ class new_class(BaseHTTPRequestHandler):
         '''
         if self.path == "/":
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-Type", "text/plain")
             self.end_headers()
             self.wfile.write(b"Hello, this is a simple API!")
 
@@ -45,12 +46,14 @@ class new_class(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            json_info = json.dumps({"version": "1.0", "description": "A simple API built with http.server"})
+            json_info = json.dumps({"version": "1.0", "description": "A "
+                                    "simple API built "
+                                    "with http.server"})
             self.wfile.write(json_info.encode())
 
         else:
             self.send_response(404)
-            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
             self.end_headers()
             self.wfile.write(b"Endpoint not found")
 
@@ -66,6 +69,7 @@ def run(server_class=HTTPServer, handler_class=new_class):
     httpd = server_class(server_address, handler_class)
     print("Starting http server on port 8000...")
     httpd.serve_forever()
+
 
 if __name__ == "__main__":
     '''
