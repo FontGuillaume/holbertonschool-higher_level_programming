@@ -33,9 +33,10 @@ def fetch_and_save_posts():
     r = requests.get(url)
 
     if r.status_code == 200:
+        posts = []
         data = r.json()
-        posts = [{"id": post["id"], "title": post["title"], "body":
-                  post["body"]} for post in data]
+        posts.append({"id": post["id"], "title": post["title"], "body":
+                      post["body"]} for post in data)
 
         with open("posts.csv", "w", newline='', encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=["id", "title", "body"])
