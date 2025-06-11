@@ -3,6 +3,7 @@
 Module implémentant un serveur HTTP RESTful simple.
 '''
 import json
+import socketserver
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
@@ -55,18 +56,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"Endpoint not found")
 
 
-def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
-    '''
-    Fonction qui démarre le serveur HTTP.
-    '''
-    server_address = ('', 8000)
-    httpd = server_class(server_address, handler_class)
-    print("Starting http server on port 8000...")
-    httpd.serve_forever()
-
-
 if __name__ == "__main__":
     '''
     Point d'entrée du script.
     '''
-    run()
+    PORT = 8000
+    with socketserver.TCPServer(("", PORT), SimpleHTTPRequestHandler) as httpd:
+        print(f"Starting http server on port {PORT}...")
+        httpd.serve_forever()
