@@ -53,9 +53,10 @@ class new_class(BaseHTTPRequestHandler):
 
         else:
             self.send_response(404)
-            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Type', 'application/json')
             self.end_headers()
-            self.wfile.write(b"Endpoint not found")
+            self.wfile.write(json.dumps(
+                {"error": "Endpoint not found"}).encode())
 
 
 def run(server_class=HTTPServer, handler_class=new_class):
