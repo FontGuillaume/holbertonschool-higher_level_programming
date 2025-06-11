@@ -4,7 +4,7 @@ Module implémentant un serveur HTTP RESTful simple.
 '''
 import json
 import socketserver
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -37,7 +37,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header(
                 "Content-type",
-                "text/plain")  # Changé en text/plain
+                "text/plain")
             self.end_headers()
             self.wfile.write(b'{"status":"OK"}')
 
@@ -56,11 +56,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"Endpoint not found")
 
 
-if __name__ == "__main__":
-    '''
-    Point d'entrée du script.
-    '''
-    PORT = 8000
-    with socketserver.TCPServer(("", PORT), SimpleHTTPRequestHandler) as httpd:
-        print(f"Starting http server on port {PORT}...")
-        httpd.serve_forever()
+# Déplacé hors de la classe avec indentation correcte
+PORT = 8000
+Handler = SimpleHTTPRequestHandler
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    print(f"Starting http server on port {PORT}...")
+    httpd.serve_forever()
