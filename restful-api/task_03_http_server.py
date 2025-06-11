@@ -1,28 +1,25 @@
 #!/usr/bin/python3
 '''
 Module implémentant un serveur HTTP RESTful simple.
-Fournit plusieurs endpoints pour démontrer les bases d'une API RESTful.
 '''
 import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
-class new_class(BaseHTTPRequestHandler):
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     '''
-    Classe de gestionnaire HTTP personnalisée qui étend BaseHTTPRequestHandler.
-    Gère les requêtes GET pour différents endpoints de l'API.
+    Classe de gestionnaire HTTP personnalisée.
     '''
 
     def do_GET(self):
         '''
-        Méthode qui traite toutes les requêtes GET reçues par le serveur.
-        Implémente plusieurs endpoints et renvoie des réponses appropriées.
+        Méthode qui traite les requêtes GET.
         '''
         if self.path == "/":
             self.send_response(200)
-            self.send_header("Content-Type", "text/plain")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write("Hello, this is a simple API!".encode())
+            self.wfile.write(b"Hello, this is a simple API!")
 
         elif self.path == "/data":
             my_dict = {
@@ -30,40 +27,35 @@ class new_class(BaseHTTPRequestHandler):
                 "age": 30,
                 "city": "New York"
             }
-            json_my_dict = json.dumps(my_dict)
             self.send_response(200)
-            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-type", "application/json")
             self.end_headers()
-            self.wfile.write(json_my_dict.encode())
+            self.wfile.write(json.dumps(my_dict).encode())
 
         elif self.path == "/status":
             self.send_response(200)
-            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-type", "application/json")
             self.end_headers()
-            self.wfile.write(json.dumps({"status": "OK"}).encode())
+            self.wfile.write(b'{"status":"OK"}')
 
         elif self.path == "/info":
             self.send_response(200)
-            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-type", "application/json")
             self.end_headers()
-            info = {
-                "version": "1.0",
-                "description": "A simple API built with http.server"}
+            info = {"version": "1.0", "description": "A simple API "
+                    "built with http.server"}
             self.wfile.write(json.dumps(info).encode())
 
         else:
             self.send_response(404)
-            self.send_header("Content-Type", "text/plain")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write("Endpoint not found".encode())
+            self.wfile.write(b"Endpoint not found")
 
 
-def run(server_class=HTTPServer, handler_class=new_class):
+def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
     '''
-    Fonction qui initialise et démarre le serveur HTTP.
-    Params:
-        server_class: Classe de serveur à utiliser (par défaut HTTPServer)
-        handler_class: Classe de gestionnaire à utiliser (par défaut new_class)
+    Fonction qui démarre le serveur HTTP.
     '''
     server_address = ('', 8000)
     httpd = server_class(server_address, handler_class)
@@ -73,7 +65,6 @@ def run(server_class=HTTPServer, handler_class=new_class):
 
 if __name__ == "__main__":
     '''
-    Point d'entrée du script quand il est exécuté directement.
-    Démarre le serveur HTTP.
+    Point d'entrée du script.
     '''
     run()
