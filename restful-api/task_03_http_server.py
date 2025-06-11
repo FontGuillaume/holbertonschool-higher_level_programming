@@ -22,7 +22,7 @@ class new_class(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"Hello, this is a simple API!")
+            self.wfile.write("Hello, this is a simple API!".encode())
 
         elif self.path == "/data":
             my_dict = {
@@ -53,7 +53,7 @@ class new_class(BaseHTTPRequestHandler):
 
         else:
             self.send_response(404)
-            self.send_header("Content-Type", 'application/json')
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps(
                 {"error": "Endpoint not found"}).encode())
