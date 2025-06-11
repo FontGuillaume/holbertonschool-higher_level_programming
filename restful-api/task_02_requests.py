@@ -42,3 +42,11 @@ def fetch_and_save_posts():
             writer = csv.DictWriter(f, fieldnames=["id", "title", "body"])
             writer.writeheader()
             writer.writerows(posts)
+
+
+if __name__ == "__main__":
+    print("Fetching and printing posts:")
+    fetch_and_print_posts()
+
+    print("\nFetching and saving posts to CSV:")
+    fetch_and_save_posts()
