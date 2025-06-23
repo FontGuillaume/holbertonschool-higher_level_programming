@@ -20,7 +20,7 @@ auth = HTTPBasicAuth()
 
 # Dictionnaire des utilisateurs avec leurs mots de passe hachés et rôles
 users = {
-    "user1": {
+    "user1": {/
         "username": "user1",
         "password": generate_password_hash("password"),
         "role": "user"},
