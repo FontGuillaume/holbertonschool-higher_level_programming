@@ -24,12 +24,12 @@ if __name__ == "__main__":
         JOIN states ON cities.state_id = states.id
         ORDER BY cities.id ASC
     """)
-    
+
     # Fetch all rows and print them
     rows = cursor.fetchall()
     for row in rows:
         print(row)
-    
+
     # Close cursor and database connection
     cursor.close()
     db.close()
