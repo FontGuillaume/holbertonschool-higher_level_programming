@@ -18,7 +18,12 @@ if __name__ == "__main__":
 
     # Create cursor and execute join query to get cities with state names
     cursor = db.cursor()
-    cursor.execute()
+    cursor.execute("""
+        SELECT cities.id, cities.name, states.name
+        FROM cities
+        JOIN states ON cities.state_id = states.id
+        ORDER BY cities.id ASC
+    """)
 
     # Fetch all rows and print them
     rows = cursor.fetchall()
