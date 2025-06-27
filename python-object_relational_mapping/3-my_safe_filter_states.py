@@ -23,12 +23,12 @@ if __name__ == "__main__":
     name_search = sys.argv[4]
     query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
     cursor.execute(query, (name_search,))
-    
+
     # Fetch all rows and print them
     rows = cursor.fetchall()
     for row in rows:
         print(row)
-    
+
     # Close cursor and database connection
     cursor.close()
     db.close()

@@ -19,12 +19,12 @@ if __name__ == "__main__":
     # Create cursor and execute query
     cursor = db.cursor()
     cursor.execute("SELECT * FROM states ORDER BY id ASC;")
-    
+
     # Fetch all rows and print them
     rows = cursor.fetchall()
     for row in rows:
         print(row)
-    
+
     # Close cursor and database connection
     cursor.close()
     db.close()
