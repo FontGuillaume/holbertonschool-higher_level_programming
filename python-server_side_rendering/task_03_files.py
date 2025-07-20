@@ -1,48 +1,38 @@
-from flask import Flask, request, render_template
-import csv
 import json
+import csv
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-def read_json(filename):
-    with open(filename, "r") as f:
-        return json.load(f)  # renvoie une liste directement
+def read_json():
+    with open('products.json') as f:
+        return json.load(f)
 
-def read_csv(filename):
-    with open(filename, newline="") as f:
-        reader = csv.DictReader(f)
+def read_csv():
+    with open('products.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
         return [row for row in reader]
 
-@app.route("/products")
-def product_display():
-    source = request.args.get("source")
-    product_id = request.args.get("id")
-    products = []
+@app.route('/products')
+def products():
+    source = request.args.get('source')
+    product_id = request.args.get('id')
     error = None
 
-    if source == "json":
-        try:
-            products = read_json("products.json")
-        except Exception:
-            error = "Erreur lors de la lecture du fichier JSON."
-    elif source == "csv":
-        try:
-            products = read_csv("products.csv")
-        except Exception:
-            error = "Erreur lors de la lecture du fichier CSV."
+    if source == 'json':
+        products = read_json()
+    elif source == 'csv':
+        products = read_csv()
     else:
         error = "Wrong source"
+        products = []
 
-    # Filtrer par id si demandé
-    if not error and product_id:
-        filtered = [p for p in products if str(p.get("id")) == str(product_id) or str(p.get("id")) == str(product_id)]
-        if filtered:
-            products = filtered
-        else:
+    if product_id and not error:
+        products = [p for p in products if str(p.get('id')) == str(product_id)]
+        if not products:
             error = "Product not found"
-            products = []
 
-    return render_template("product_display.html", products=products, error=error)
+    return render_template('product_display.html', products=products, error=error)
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5500)
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
