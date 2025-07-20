@@ -4,28 +4,45 @@ import json
 
 app = Flask(__name__)
 
-@app.route("/")
+def read_json(filename):
+    with open(filename, "r") as f:
+        return json.load(f)
+
+def read_csv(filename):
+    with open(filename, newline="") as f:
+        reader = csv.DictReader(f)
+        return [row for row in reader]
+
+@app.route("/products")
 def product_display():
     source = request.args.get("source")
     product_id = request.args.get("id")
     products = []
+    error = None
 
     if source == "json":
-        with open("products.json", "r") as f:
-            data = json.load(f)
-            products = data.get("products", [])
-
+        try:
+            products = read_json("products.json")
+        except Exception:
+            error = "Erreur lors de la lecture du fichier JSON."
     elif source == "csv":
-        with open("products.csv", newline="") as f:
-            reader = csv.DictReader(f)
-            products = [row for row in reader]
-
+        try:
+            products = read_csv("products.csv")
+        except Exception:
+            error = "Erreur lors de la lecture du fichier CSV."
     else:
-        return "Invalid source parameter", 400
-    
-    if product_id:
-        products = [p for p in products if str(p.get("id")) == str(product_id)]
-        return render_template("product_display.html", products=products)
-    
+        error = "Wrong source"
+
+    # Filtrer par id si demandé
+    if not error and product_id:
+        filtered = [p for p in products if str(p.get("id")) == str(product_id) or str(p.get("id")) == str(product_id)]
+        if filtered:
+            products = filtered
+        else:
+            error = "Product not found"
+            products = []
+
+    return render_template("product_display.html", products=products, error=error)
+
 if __name__ == "__main__":
     app.run(debug=True, port=5500)
