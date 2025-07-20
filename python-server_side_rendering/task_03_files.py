@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def read_json(filename):
     with open(filename, "r") as f:
-        return json.load(f)
+        return json.load(f)  # renvoie une liste directement
 
 def read_csv(filename):
     with open(filename, newline="") as f:
